@@ -9,7 +9,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server); //instance of socket
 
-app.use(cors);
+app.use(cors());
+app.use(router);
 
 io.on("connection", (socket) => {
   socket.on("join", ({ name, room }, callback) => {
@@ -60,5 +61,4 @@ io.on("connection", (socket) => {
   });
 });
 
-app.use(router);
 server.listen(PORT, () => console.log("server running"));
